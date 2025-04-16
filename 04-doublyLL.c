@@ -83,33 +83,24 @@ void deleteend() {
 void deletemid() {
     struct node *prev = NULL, *ptr = first;
     int data;
-
-    // Check if the list is empty
     if (first == NULL) {
         printf("List is empty, nothing to delete.\n");
         return;
     }
-
     printf("\nEnter the element you need to delete: ");
     scanf("%d", &data);
-
-    // Search for the node to delete
     while (ptr != NULL && ptr->info != data) {
         prev = ptr;
         ptr = ptr->rpt;
     }
-
-    // If node is not found
     if (ptr == NULL) {
         printf("Element not found.\n");
         return;
     }
-
-    // If the node to be deleted is the first node
     if (ptr == first) {
         first = ptr->rpt;
         if (first != NULL) {
-            first->lpt = NULL;  // Adjust the backward pointer of the new first node
+            first->lpt = NULL;
         }
     } else {
         prev->rpt = ptr->rpt;
@@ -117,15 +108,10 @@ void deletemid() {
             ptr->rpt->lpt = prev;
         }
     }
-
-    // Free the memory of the node
     free(ptr);
     printf("Element deleted!\n");
-
-    // Call display function if exists
     display();
 }
-
 int main() {
     char ch, choice = '1';
     struct node *new, *curent;
@@ -178,4 +164,3 @@ int main() {
         }
     }
 }
-
